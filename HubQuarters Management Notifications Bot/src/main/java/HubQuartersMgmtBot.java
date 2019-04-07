@@ -8,13 +8,23 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class HubQuartersMgmtBot extends TelegramLongPollingBot {
     private int totalCapacity = 80;
+    private boolean isFirstTime = true;
+    private List<Long> subscribedChatIds = new ArrayList<>();
 
     public void onUpdateReceived(Update update) {
+        if (isFirstTime) {
+            pushNotifications();
+            isFirstTime = false;
+        }
+
         SendMessage message = new SendMessage();
         message.enableMarkdown(true);
 
@@ -36,6 +46,10 @@ public class HubQuartersMgmtBot extends TelegramLongPollingBot {
 
                 sendMessage(message);
                 sendMessage(welcomeMsg);
+
+                if (!subscribedChatIds.contains(update.getMessage().getChatId())) {
+                    subscribedChatIds.add(update.getMessage().getChatId());
+                }
             }
         } else if (update.hasCallbackQuery()) {
             String reply = update.getCallbackQuery().getData();
@@ -87,7 +101,46 @@ public class HubQuartersMgmtBot extends TelegramLongPollingBot {
     }
 
     public void pushNotifications() {
-        Thread notifications = new Thread(new Subscribe());
+        final SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Thread notifications = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true) {
+                    try {
+                        String responseText = "";
+                        List<String> response = OccupancyDAO.retrieveData();
+
+                        if (response.size() == 2) {
+                            String timestamp = response.get(1);
+                            Date lastImageTime = dateFormatter.parse(timestamp);
+                            Date currentTime = new Date();
+                            long difference = (currentTime.getTime() - lastImageTime.getTime()) / 1000;
+                            if (difference > 600) {
+                                System.out.println("Alert");
+                                for (long chatId : subscribedChatIds) {
+                                    SendMessage alertMessage = new SendMessage();
+                                    alertMessage.enableMarkdown(true);
+                                    alertMessage.setChatId(chatId);
+                                    alertMessage.setText("*ALERT*");
+                                    sendMessage(alertMessage);
+                                    SendMessage message = new SendMessage();
+                                    message.setChatId(chatId);
+                                    message.setText(String.format("Please check up on the Raspberry Pi. The last update received was at %s.", timestamp));
+                                    sendMessage(message);
+                                }
+                            }
+                        } else {
+                            responseText = "a";
+                        }
+
+                        Thread.sleep(6000);
+                    } catch (IOException | URISyntaxException | ParseException | InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+        notifications.start();
     }
 
     public String getBotUsername() {
