@@ -54,6 +54,5 @@
 
     <distributionManagement>
         <downloadUrl>https://github.com/ngjunxiang/HubQuartersTelegramBots.git</downloadUrl>
-        <status>deployed</status>
     </distributionManagement>
 </project>
