@@ -77,7 +77,7 @@ public class HubQuartersMgmtBot extends TelegramLongPollingBot {
                         List<List<InlineKeyboardButton>> keyboard = ((InlineKeyboardMarkup) markup).getKeyboard();
                         keyboard.add(new ArrayList<InlineKeyboardButton>());
                         keyboard.get(0).add(new InlineKeyboardButton().setText("Update Me").setCallbackData("/showoccupancyrate"));
-                        keyboard.get(0).add(new InlineKeyboardButton().setText("Done").setCallbackData("/done"));
+                        keyboard.get(0).add(new InlineKeyboardButton().setText("Unsubscribe from Updates").setCallbackData("/unsubscribe"));
                         message.setReplyMarkup(markup);
                     } else {
                         message.setText(response.get(0));
@@ -106,10 +106,6 @@ public class HubQuartersMgmtBot extends TelegramLongPollingBot {
 
                 message.enableMarkdown(false);
                 message.setText("You are now unsubscribed. Thank you for using *SCAPE HubQuarters CMS!");
-                sendMessage(message);
-            }  else if (reply.contains("/done")) {
-                message.enableMarkdown(false);
-                message.setText("Thank you for using *SCAPE HubQuarters CMS!");
                 sendMessage(message);
             }
         }
