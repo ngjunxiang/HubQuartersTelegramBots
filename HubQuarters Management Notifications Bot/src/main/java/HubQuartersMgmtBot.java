@@ -130,7 +130,6 @@ public class HubQuartersMgmtBot extends TelegramLongPollingBot {
             public void run() {
                 while (true) {
                     try {
-                        String responseText = "";
                         List<String> response = OccupancyDAO.retrieveData();
 
                         if (response.size() == 2) {
@@ -148,15 +147,20 @@ public class HubQuartersMgmtBot extends TelegramLongPollingBot {
                                     sendMessage(alertMessage);
                                     SendMessage message = new SendMessage();
                                     message.setChatId(chatId);
-                                    message.setText(String.format("Please check up on the Raspberry Pi. The last update received was at %s.", timestamp));
+                                    message.setText(String.format("The last update received was at %s. Please check up on the Raspberry Pi.", timestamp));
                                     sendMessage(message);
                                 }
                             }
                         } else {
-                            responseText = "a";
+                            for (long chatId : subscribedChatIds) {
+                                SendMessage message = new SendMessage();
+                                message.setChatId(chatId);
+                                message.setText("Something went wrong with the CMS API.");
+                                sendMessage(message);
+                            }
                         }
 
-                        Thread.sleep(6000);
+                        Thread.sleep(600000);
                     } catch (IOException | URISyntaxException | ParseException | InterruptedException e) {
                         e.printStackTrace();
                     }
