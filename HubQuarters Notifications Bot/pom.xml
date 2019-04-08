@@ -53,12 +53,7 @@
     </dependencies>
 
     <distributionManagement>
-        <repository>
-            <uniqueVersion>false</uniqueVersion>
-            <id>hubquartersbots</id>
-            <name>HubQuarters Telegram Bots</name>
-            <url>https://github.com/ngjunxiang/HubQuartersTelegramBots.git</url>
-            <layout>default</layout>
-        </repository>
+        <downloadUrl>https://github.com/ngjunxiang/HubQuartersTelegramBots.git</downloadUrl>
+        <status>deployed</status>
     </distributionManagement>
 </project>
