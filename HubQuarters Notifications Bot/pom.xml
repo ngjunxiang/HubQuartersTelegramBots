@@ -17,6 +17,14 @@
                     <target>7</target>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.4.0</version>
+                <configuration>
+                    <mainClass>main.Main</mainClass>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
@@ -52,11 +60,4 @@
         </dependency>
     </dependencies>
 
-    <distributionManagement>
-        <repository>
-            <id>cms-notification-bot</id>
-            <url>https://github.com/ngjunxiang/HubQuartersTelegramBots.git</url>
-        </repository>
-        <downloadUrl>https://github.com/ngjunxiang/HubQuartersTelegramBots.git</downloadUrl>
-    </distributionManagement>
 </project>

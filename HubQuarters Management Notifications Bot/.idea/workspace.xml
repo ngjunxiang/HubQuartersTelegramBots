@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="319ce383-d4ef-4528-a858-01c6a979202d" name="Default Changelist" comment="" />
+    <list default="true" id="319ce383-d4ef-4528-a858-01c6a979202d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../HubQuarters Notifications Bot/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HubQuarters Notifications Bot/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HubQuarters Notifications Bot/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HubQuarters Notifications Bot/pom.xml" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -256,12 +259,12 @@
       <workItem from="1553924572432" duration="447000" />
       <workItem from="1554559329104" duration="203000" />
       <workItem from="1554634986292" duration="2496000" />
-      <workItem from="1554699296398" duration="321000" />
+      <workItem from="1554699296398" duration="863000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14776000" />
+    <option name="totallyTimeSpent" value="15318000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
