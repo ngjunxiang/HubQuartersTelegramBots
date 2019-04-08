@@ -2,15 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="319ce383-d4ef-4528-a858-01c6a979202d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/HubQuartersMgmtBot$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/HubQuartersMgmtBot$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/HubQuartersMgmtBot.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/HubQuartersMgmtBot.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/OccupancyDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/OccupancyDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HubQuarters Notifications Bot/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HubQuarters Notifications Bot/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HubQuarters Notifications Bot/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HubQuarters Notifications Bot/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/HubQuartersMgmtBot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/HubQuartersMgmtBot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/cms-mgmt-notification-bot-1.0-SNAPSHOT.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/original-cms-mgmt-notification-bot-1.0-SNAPSHOT.jar" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -45,11 +39,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="343">
               <caret line="42" column="21" selection-start-line="42" selection-start-column="21" selection-end-line="42" selection-end-column="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/HubQuartersMgmtBot.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="79" column="105" selection-start-line="79" selection-start-column="105" selection-end-line="79" selection-end-column="105" />
             </state>
           </provider>
         </entry>
@@ -81,8 +84,8 @@
         <option value="$PROJECT_DIR$/src/main/java/HubQuartersCMSBot.java" />
         <option value="$PROJECT_DIR$/src/main/java/Subscribe.java" />
         <option value="$PROJECT_DIR$/src/main/java/OccupancyDAO.java" />
-        <option value="$PROJECT_DIR$/src/main/java/HubQuartersMgmtBot.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/HubQuartersMgmtBot.java" />
       </list>
     </option>
   </component>
@@ -134,6 +137,13 @@
               <item name="HubQuarters Management Notifications Bot" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="HubQuarters Management Notifications Bot" type="b2602c69:ProjectViewProjectNode" />
+              <item name="HubQuarters Management Notifications Bot" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -207,11 +217,12 @@
       <workItem from="1554699296398" duration="2980000" />
       <workItem from="1554706731318" duration="199000" />
       <workItem from="1554707470213" duration="24000" />
+      <workItem from="1554708884963" duration="63000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17658000" />
+    <option name="totallyTimeSpent" value="17721000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -226,7 +237,7 @@
     <frame x="0" y="23" width="1440" height="877" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.28540772" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.28898427" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -286,11 +297,17 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/Image.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/Response.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/OccupancyDAO.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/HubQuartersMgmtBot.java" />
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="343">
           <caret line="42" column="21" selection-start-line="42" selection-start-column="21" selection-end-line="42" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/HubQuartersMgmtBot.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="79" column="105" selection-start-line="79" selection-start-column="105" selection-end-line="79" selection-end-column="105" />
         </state>
       </provider>
     </entry>

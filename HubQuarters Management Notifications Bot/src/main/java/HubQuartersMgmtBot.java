@@ -77,7 +77,11 @@ public class HubQuartersMgmtBot extends TelegramLongPollingBot {
                         List<List<InlineKeyboardButton>> keyboard = ((InlineKeyboardMarkup) markup).getKeyboard();
                         keyboard.add(new ArrayList<InlineKeyboardButton>());
                         keyboard.get(0).add(new InlineKeyboardButton().setText("Update Me").setCallbackData("/showoccupancyrate"));
-                        keyboard.get(0).add(new InlineKeyboardButton().setText("Unsubscribe from Updates").setCallbackData("/unsubscribe"));
+                        if (subscribedChatIds.contains(update.getCallbackQuery().getMessage().getChatId())) {
+                            keyboard.get(0).add(new InlineKeyboardButton().setText("Unsubscribe from Updates").setCallbackData("/unsubscribe"));
+                        } else {
+                            keyboard.get(0).add(new InlineKeyboardButton().setText("Subscribe to Updates").setCallbackData("/subscribe"));
+                        }
                         message.setReplyMarkup(markup);
                     } else {
                         message.setText(response.get(0));
