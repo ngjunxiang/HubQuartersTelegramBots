@@ -45,7 +45,7 @@ public class OccupancyDAO {
                     BufferedReader br = new BufferedReader(new InputStreamReader(rstream));
                     String responseMsg;
                     if ((responseMsg = br.readLine()) != null) {
-                        System.out.println("Retrieved status=" + responseMsg);
+//                        System.out.println("Retrieved status=" + responseMsg);
                     }
 
                     Gson g = new Gson();

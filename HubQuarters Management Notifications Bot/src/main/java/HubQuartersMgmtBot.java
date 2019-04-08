@@ -88,16 +88,16 @@ public class HubQuartersMgmtBot extends TelegramLongPollingBot {
                     e.printStackTrace();
                 }
             } else if (reply.contains("/subscribe")) {
-                if (!subscribedChatIds.contains(update.getMessage().getChatId())) {
-                    subscribedChatIds.add(update.getMessage().getChatId());
+                if (!subscribedChatIds.contains(update.getCallbackQuery().getMessage().getChatId())) {
+                    subscribedChatIds.add(update.getCallbackQuery().getMessage().getChatId());
                 }
 
                 message.setText("You are now subscribed. You will be notified should there be any alerts.");
                 sendMessage(message);
             } else if (reply.contains("/unsubscribe")) {
-                if (subscribedChatIds.contains(update.getMessage().getChatId())) {
+                if (subscribedChatIds.contains(update.getCallbackQuery().getMessage().getChatId())) {
                     for (int i = 0; i < subscribedChatIds.size(); i++) {
-                        if (subscribedChatIds.get(i) == update.getMessage().getChatId()) {
+                        if (subscribedChatIds.get(i) == update.getCallbackQuery().getMessage().getChatId()) {
                             subscribedChatIds.remove(i);
                         }
                         break;
