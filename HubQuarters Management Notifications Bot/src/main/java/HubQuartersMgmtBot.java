@@ -37,19 +37,22 @@ public class HubQuartersMgmtBot extends TelegramLongPollingBot {
 
                 SendMessage welcomeMsg = new SendMessage();
                 welcomeMsg.setChatId(update.getMessage().getChatId());
-                welcomeMsg.setText("Welcome to *SCAPE HubQuarters CMS!");
+                welcomeMsg.setText("Welcome to *SCAPE HubQuarters CMS for Management!");
                 ReplyKeyboard markup = new InlineKeyboardMarkup();
                 List<List<InlineKeyboardButton>> keyboard = ((InlineKeyboardMarkup) markup).getKeyboard();
                 keyboard.add(new ArrayList<InlineKeyboardButton>());
                 keyboard.get(0).add(new InlineKeyboardButton().setText("Show Occupancy Rate").setCallbackData("/showoccupancyrate"));
+
+                if (subscribedChatIds.contains(update.getMessage().getChatId())) {
+                    keyboard.get(0).add(new InlineKeyboardButton().setText("Unsubscribe from Updates").setCallbackData("/unsubscribe"));
+                } else {
+                    keyboard.get(0).add(new InlineKeyboardButton().setText("Subscribe to Updates").setCallbackData("/subscribe"));
+                }
+
                 welcomeMsg.setReplyMarkup(markup);
 
                 sendMessage(message);
                 sendMessage(welcomeMsg);
-
-                if (!subscribedChatIds.contains(update.getMessage().getChatId())) {
-                    subscribedChatIds.add(update.getMessage().getChatId());
-                }
             }
         } else if (update.hasCallbackQuery()) {
             String reply = update.getCallbackQuery().getData();
@@ -84,7 +87,27 @@ public class HubQuartersMgmtBot extends TelegramLongPollingBot {
                 } catch (IOException | URISyntaxException e) {
                     e.printStackTrace();
                 }
-            } else if (reply.contains("/done")) {
+            } else if (reply.contains("/subscribe")) {
+                if (!subscribedChatIds.contains(update.getMessage().getChatId())) {
+                    subscribedChatIds.add(update.getMessage().getChatId());
+                }
+
+                message.setText("You are now subscribed. You will be notified should there be any alerts.");
+                sendMessage(message);
+            } else if (reply.contains("/unsubscribe")) {
+                if (subscribedChatIds.contains(update.getMessage().getChatId())) {
+                    for (int i = 0; i < subscribedChatIds.size(); i++) {
+                        if (subscribedChatIds.get(i) == update.getMessage().getChatId()) {
+                            subscribedChatIds.remove(i);
+                        }
+                        break;
+                    }
+                }
+
+                message.enableMarkdown(false);
+                message.setText("You are now unsubscribed. Thank you for using *SCAPE HubQuarters CMS!");
+                sendMessage(message);
+            }  else if (reply.contains("/done")) {
                 message.enableMarkdown(false);
                 message.setText("Thank you for using *SCAPE HubQuarters CMS!");
                 sendMessage(message);
