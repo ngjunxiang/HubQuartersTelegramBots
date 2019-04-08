@@ -6,8 +6,8 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="HubQuarters Notifications Bot" />
         <module name="cms-mgmt-notification-bot" />
+        <module name="HubQuarters Notifications Bot" />
       </profile>
     </annotationProcessing>
   </component>
