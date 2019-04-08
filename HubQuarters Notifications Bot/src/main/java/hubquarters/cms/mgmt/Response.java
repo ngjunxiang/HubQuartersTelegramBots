@@ -1,3 +1,5 @@
+package hubquarters.cms.mgmt;
+
 import java.util.ArrayList;
 
 public class Response {

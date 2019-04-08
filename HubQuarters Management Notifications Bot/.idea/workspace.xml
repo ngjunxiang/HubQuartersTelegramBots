@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="319ce383-d4ef-4528-a858-01c6a979202d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/HubQuartersMgmtBot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/HubQuartersMgmtBot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HubQuarters Notifications Bot/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HubQuarters Notifications Bot/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="319ce383-d4ef-4528-a858-01c6a979202d" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -62,7 +59,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/HubQuartersMgmtBot.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="269">
+            <state relative-caret-position="137">
               <caret line="79" column="140" selection-start-line="79" selection-start-column="140" selection-end-line="79" selection-end-column="140" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -186,6 +183,13 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="HubQuarters Management Notifications Bot" type="b2602c69:ProjectViewProjectNode" />
+              <item name="HubQuarters Management Notifications Bot" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -225,8 +229,8 @@
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Main" />
-      <module name="cms-mgmt-notification-bot" />
+      <option name="MAIN_CLASS_NAME" value="hubquarters.cms.mgmt.Main" />
+      <module name="cms-notification-bot" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -255,12 +259,12 @@
       <workItem from="1553924572432" duration="447000" />
       <workItem from="1554559329104" duration="203000" />
       <workItem from="1554634986292" duration="2496000" />
-      <workItem from="1554699296398" duration="2980000" />
+      <workItem from="1554699296398" duration="3326000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17435000" />
+    <option name="totallyTimeSpent" value="17781000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -273,9 +277,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="877" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.27825466" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27825466" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -284,7 +287,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3299363" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3299363" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.3299363" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -374,7 +377,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/HubQuartersMgmtBot.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
+        <state relative-caret-position="137">
           <caret line="79" column="140" selection-start-line="79" selection-start-column="140" selection-end-line="79" selection-end-column="140" />
           <folding>
             <element signature="imports" expanded="true" />

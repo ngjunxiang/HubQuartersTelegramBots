@@ -1,3 +1,5 @@
+package hubquarters.cms.mgmt;
+
 import org.telegram.telegrambots.ApiContextInitializer;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
@@ -7,7 +9,7 @@ public class Main {
         ApiContextInitializer.init();
         TelegramBotsApi telegramBotsApi = new TelegramBotsApi();
         try {
-            telegramBotsApi.registerBot(new HubQuartersCMSBot());
+            telegramBotsApi.registerBot(new HubQuartersMgmtBot());
         } catch (TelegramApiException e) {
             e.printStackTrace();
         }

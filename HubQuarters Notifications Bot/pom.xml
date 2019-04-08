@@ -21,9 +21,26 @@
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>1.4.0</version>
-                <configuration>
-                    <mainClass>Main</mainClass>
-                </configuration>
+                <executions>
+                    <execution>
+                        <id>tenants-bot</id>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <configuration>
+                            <mainClass>hubquarters.cms.tenants.Main</mainClass>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>mgmt-bot</id>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <configuration>
+                            <mainClass>hubquarters.cms.mgmt.Main</mainClass>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

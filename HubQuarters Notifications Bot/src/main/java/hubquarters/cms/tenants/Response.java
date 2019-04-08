@@ -1,3 +1,5 @@
+package hubquarters.cms.tenants;
+
 import java.util.ArrayList;
 
 public class Response {

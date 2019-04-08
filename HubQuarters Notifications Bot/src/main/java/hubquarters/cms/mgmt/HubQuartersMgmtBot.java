@@ -1,3 +1,5 @@
+package hubquarters.cms.mgmt;
+
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
@@ -167,7 +169,7 @@ public class HubQuartersMgmtBot extends TelegramLongPollingBot {
     }
 
     public String getBotUsername() {
-        return "HubQuartersMgmtBot";
+        return "hubquarters.cms.mgmt.HubQuartersMgmtBot";
     }
 
     public String getBotToken() {

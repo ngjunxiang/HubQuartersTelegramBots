@@ -1,3 +1,5 @@
+package hubquarters.cms.tenants;
+
 import com.google.gson.Gson;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpStatus;
@@ -34,6 +36,7 @@ public class OccupancyDAO {
             int statusCode = response.getStatusLine().getStatusCode();
 
             if (statusCode != HttpStatus.SC_OK) {
+                System.out.println(statusCode);
                 result.add("Sorry, something went wrong. Please try again!");
                 return result;
             } else {
@@ -45,7 +48,7 @@ public class OccupancyDAO {
                     BufferedReader br = new BufferedReader(new InputStreamReader(rstream));
                     String responseMsg;
                     if ((responseMsg = br.readLine()) != null) {
-//                        System.out.println("Retrieved status=" + responseMsg);
+                        System.out.println("Retrieved status=" + responseMsg);
                     }
 
                     Gson g = new Gson();

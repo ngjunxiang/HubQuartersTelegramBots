@@ -22,7 +22,7 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>1.4.0</version>
                 <configuration>
-                    <mainClass>Main</mainClass>
+                    <mainClass>hubquarters.cms.mgmt.Main</mainClass>
                 </configuration>
             </plugin>
         </plugins>

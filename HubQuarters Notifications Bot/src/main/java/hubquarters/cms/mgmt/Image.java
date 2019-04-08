@@ -1,3 +1,5 @@
+package hubquarters.cms.mgmt;
+
 public class Image {
     private String id;
     private String imageName;
