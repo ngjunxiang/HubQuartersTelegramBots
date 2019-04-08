@@ -34,6 +34,7 @@ public class OccupancyDAO {
             int statusCode = response.getStatusLine().getStatusCode();
 
             if (statusCode != HttpStatus.SC_OK) {
+                System.out.println(statusCode);
                 result.add("Sorry, something went wrong. Please try again!");
                 return result;
             } else {
