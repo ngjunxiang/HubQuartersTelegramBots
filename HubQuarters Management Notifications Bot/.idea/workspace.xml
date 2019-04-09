@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="319ce383-d4ef-4528-a858-01c6a979202d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/HubQuartersMgmtBot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/HubQuartersMgmtBot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/cms-mgmt-notification-bot-1.0-SNAPSHOT.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/original-cms-mgmt-notification-bot-1.0-SNAPSHOT.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HubQuarters Notifications Bot/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HubQuarters Notifications Bot/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HubQuarters Notifications Bot/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HubQuarters Notifications Bot/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -42,7 +44,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="343">
+            <state relative-caret-position="840">
               <caret line="42" column="21" selection-start-line="42" selection-start-column="21" selection-end-line="42" selection-end-column="21" />
             </state>
           </provider>
@@ -51,8 +53,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/HubQuartersMgmtBot.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="79" column="105" selection-start-line="79" selection-start-column="105" selection-end-line="79" selection-end-column="105" />
+            <state relative-caret-position="499">
+              <caret line="155" column="76" selection-start-line="155" selection-start-column="76" selection-end-line="155" selection-end-column="76" />
             </state>
           </provider>
         </entry>
@@ -217,12 +219,13 @@
       <workItem from="1554699296398" duration="2980000" />
       <workItem from="1554706731318" duration="199000" />
       <workItem from="1554707470213" duration="24000" />
-      <workItem from="1554708884963" duration="63000" />
+      <workItem from="1554708884963" duration="538000" />
+      <workItem from="1554796525222" duration="1778000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17721000" />
+    <option name="totallyTimeSpent" value="19974000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -237,7 +240,7 @@
     <frame x="0" y="23" width="1440" height="877" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.28898427" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18383405" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -299,15 +302,15 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/OccupancyDAO.java" />
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="343">
+        <state relative-caret-position="840">
           <caret line="42" column="21" selection-start-line="42" selection-start-column="21" selection-end-line="42" selection-end-column="21" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/HubQuartersMgmtBot.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="79" column="105" selection-start-line="79" selection-start-column="105" selection-end-line="79" selection-end-column="105" />
+        <state relative-caret-position="499">
+          <caret line="155" column="76" selection-start-line="155" selection-start-column="76" selection-end-line="155" selection-end-column="76" />
         </state>
       </provider>
     </entry>

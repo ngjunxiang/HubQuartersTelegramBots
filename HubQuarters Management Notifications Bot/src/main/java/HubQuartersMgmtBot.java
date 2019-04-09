@@ -151,6 +151,9 @@ public class HubQuartersMgmtBot extends TelegramLongPollingBot {
                                     sendMessage(message);
                                 }
                             }
+
+                            System.out.println(String.format("Last checked at %s", dateFormatter.format(currentTime)));
+                            System.out.println("Difference: " + difference);
                         } else {
                             for (long chatId : subscribedChatIds) {
                                 SendMessage message = new SendMessage();
@@ -159,7 +162,6 @@ public class HubQuartersMgmtBot extends TelegramLongPollingBot {
                                 sendMessage(message);
                             }
                         }
-
                         Thread.sleep(600000);
                     } catch (IOException | URISyntaxException | ParseException | InterruptedException e) {
                         e.printStackTrace();
