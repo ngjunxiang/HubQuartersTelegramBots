@@ -8,13 +8,24 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class HubQuartersCMSBot extends TelegramLongPollingBot {
     private int totalCapacity = 80;
+    private boolean isFirstTime = true;
+    private List<Long> subscribedChatIds = new CopyOnWriteArrayList<>();
 
     public void onUpdateReceived(Update update) {
+        if (isFirstTime) {
+            checkAvailability();
+            isFirstTime = false;
+        }
+
         SendMessage message = new SendMessage();
         message.enableMarkdown(true);
 
@@ -32,6 +43,8 @@ public class HubQuartersCMSBot extends TelegramLongPollingBot {
                 List<List<InlineKeyboardButton>> keyboard = ((InlineKeyboardMarkup) markup).getKeyboard();
                 keyboard.add(new ArrayList<InlineKeyboardButton>());
                 keyboard.get(0).add(new InlineKeyboardButton().setText("Show Occupancy Rate").setCallbackData("/showoccupancyrate"));
+                keyboard.add(new ArrayList<InlineKeyboardButton>());
+                keyboard.get(1).add(new InlineKeyboardButton().setText("Request for Seat").setCallbackData("/request"));
                 welcomeMsg.setReplyMarkup(markup);
 
                 sendMessage(message);
@@ -59,8 +72,10 @@ public class HubQuartersCMSBot extends TelegramLongPollingBot {
                         ReplyKeyboard markup = new InlineKeyboardMarkup();
                         List<List<InlineKeyboardButton>> keyboard = ((InlineKeyboardMarkup) markup).getKeyboard();
                         keyboard.add(new ArrayList<InlineKeyboardButton>());
-                        keyboard.get(0).add(new InlineKeyboardButton().setText("Update Me").setCallbackData("/showoccupancyrate"));
-                        keyboard.get(0).add(new InlineKeyboardButton().setText("Done").setCallbackData("/done"));
+                        keyboard.get(0).add(new InlineKeyboardButton().setText("Request for Seat").setCallbackData("/request"));
+                        keyboard.add(new ArrayList<InlineKeyboardButton>());
+                        keyboard.get(1).add(new InlineKeyboardButton().setText("Update Me").setCallbackData("/showoccupancyrate"));
+                        keyboard.get(1).add(new InlineKeyboardButton().setText("Done").setCallbackData("/done"));
                         message.setReplyMarkup(markup);
                     } else {
                         message.setText(response.get(0));
@@ -70,12 +85,67 @@ public class HubQuartersCMSBot extends TelegramLongPollingBot {
                 } catch (IOException | URISyntaxException e) {
                     e.printStackTrace();
                 }
+            } else if (reply.contains("/request")) {
+                synchronized (subscribedChatIds) {
+                    if (!subscribedChatIds.contains(update.getCallbackQuery().getMessage().getChatId())) {
+                        subscribedChatIds.add(update.getCallbackQuery().getMessage().getChatId());
+                    }
+                }
+                message.enableMarkdown(false);
+                message.setText("We will notify you when a seat is available!");
+                sendMessage(message);
             } else if (reply.contains("/done")) {
                 message.enableMarkdown(false);
                 message.setText("Thank you for using *SCAPE HubQuarters CMS!");
                 sendMessage(message);
             }
         }
+    }
+
+    public void checkAvailability() {
+        final SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Thread availability = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true) {
+                    synchronized (subscribedChatIds) {
+                        if (subscribedChatIds.size() > 0) {
+                            try {
+                                List<String> response = OccupancyDAO.retrieveData();
+                                System.out.println(response.size());
+                                if (response.size() == 2) {
+                                    System.out.println("update");
+                                    String timestamp = response.get(1);
+                                    Date lastImageTime = dateFormatter.parse(timestamp);
+                                    Date currentTime = new Date();
+                                    long difference = (currentTime.getTime() - lastImageTime.getTime()) / 1000;
+                                    if (difference < 600) {
+                                        int numPeople = Integer.parseInt(response.get(0));
+                                        System.out.println(numPeople);
+                                        if (numPeople < 80) {
+                                            for (long chatId : subscribedChatIds) {
+                                                SendMessage updateMessage = new SendMessage();
+                                                updateMessage.enableMarkdown(true);
+                                                updateMessage.setChatId(chatId);
+                                                updateMessage.setText("*UPDATE*\nThere are " + (80 - numPeople) + " seats available now.");
+                                                sendMessage(updateMessage);
+                                            }
+                                            subscribedChatIds = new ArrayList<>();
+                                        }
+                                    }
+
+                                    System.out.println(String.format("Last checked at %s", dateFormatter.format(currentTime)));
+                                    System.out.println("Difference: " + difference);
+                                }
+                            } catch (IOException | URISyntaxException | ParseException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                }
+            }
+        });
+        availability.start();
     }
 
     public void sendMessage(SendMessage message) {
