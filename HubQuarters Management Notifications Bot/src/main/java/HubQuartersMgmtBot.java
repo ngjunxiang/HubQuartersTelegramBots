@@ -173,8 +173,8 @@ public class HubQuartersMgmtBot extends TelegramLongPollingBot {
                                 }
                             }
                         }
-                        Thread.sleep(1000);
-//                        Thread.sleep(600000);
+//                        Thread.sleep(1000);
+                        Thread.sleep(600000);
                     } catch (IOException | URISyntaxException | ParseException | InterruptedException e) {
                         e.printStackTrace();
                     }
