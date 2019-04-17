@@ -18,7 +18,7 @@ public class OccupancyDAO {
     public static List<String> retrieveData() throws URISyntaxException, IOException {
         List<String> result = new ArrayList<>();
 
-        String fullQuery = "limit=1";
+        String fullQuery = "limit=1&order=desc";
 
         CloseableHttpClient client = HttpClients.createDefault();
 
