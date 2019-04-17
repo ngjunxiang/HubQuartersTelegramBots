@@ -13,11 +13,12 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class HubQuartersMgmtBot extends TelegramLongPollingBot {
     private int totalCapacity = 80;
     private boolean isFirstTime = true;
-    private List<Long> subscribedChatIds = new ArrayList<>();
+    private List<Long> subscribedChatIds = new CopyOnWriteArrayList<>();
 
     public void onUpdateReceived(Update update) {
         if (isFirstTime) {
@@ -43,10 +44,12 @@ public class HubQuartersMgmtBot extends TelegramLongPollingBot {
                 keyboard.add(new ArrayList<InlineKeyboardButton>());
                 keyboard.get(0).add(new InlineKeyboardButton().setText("Show Occupancy Rate").setCallbackData("/showoccupancyrate"));
 
-                if (subscribedChatIds.contains(update.getMessage().getChatId())) {
-                    keyboard.get(0).add(new InlineKeyboardButton().setText("Unsubscribe from Updates").setCallbackData("/unsubscribe"));
-                } else {
-                    keyboard.get(0).add(new InlineKeyboardButton().setText("Subscribe to Updates").setCallbackData("/subscribe"));
+                synchronized (subscribedChatIds) {
+                    if (subscribedChatIds.contains(update.getMessage().getChatId())) {
+                        keyboard.get(0).add(new InlineKeyboardButton().setText("Unsubscribe from Updates").setCallbackData("/unsubscribe"));
+                    } else {
+                        keyboard.get(0).add(new InlineKeyboardButton().setText("Subscribe to Updates").setCallbackData("/subscribe"));
+                    }
                 }
 
                 welcomeMsg.setReplyMarkup(markup);
@@ -77,11 +80,14 @@ public class HubQuartersMgmtBot extends TelegramLongPollingBot {
                         List<List<InlineKeyboardButton>> keyboard = ((InlineKeyboardMarkup) markup).getKeyboard();
                         keyboard.add(new ArrayList<InlineKeyboardButton>());
                         keyboard.get(0).add(new InlineKeyboardButton().setText("Update Me").setCallbackData("/showoccupancyrate"));
-                        if (subscribedChatIds.contains(update.getCallbackQuery().getMessage().getChatId())) {
-                            keyboard.get(0).add(new InlineKeyboardButton().setText("Unsubscribe from Updates").setCallbackData("/unsubscribe"));
-                        } else {
-                            keyboard.get(0).add(new InlineKeyboardButton().setText("Subscribe to Updates").setCallbackData("/subscribe"));
+                        synchronized (subscribedChatIds) {
+                            if (subscribedChatIds.contains(update.getCallbackQuery().getMessage().getChatId())) {
+                                keyboard.get(0).add(new InlineKeyboardButton().setText("Unsubscribe from Updates").setCallbackData("/unsubscribe"));
+                            } else {
+                                keyboard.get(0).add(new InlineKeyboardButton().setText("Subscribe to Updates").setCallbackData("/subscribe"));
+                            }
                         }
+
                         message.setReplyMarkup(markup);
                     } else {
                         message.setText(response.get(0));
@@ -92,19 +98,18 @@ public class HubQuartersMgmtBot extends TelegramLongPollingBot {
                     e.printStackTrace();
                 }
             } else if (reply.contains("/subscribe")) {
-                if (!subscribedChatIds.contains(update.getCallbackQuery().getMessage().getChatId())) {
-                    subscribedChatIds.add(update.getCallbackQuery().getMessage().getChatId());
+                synchronized (subscribedChatIds) {
+                    if (!subscribedChatIds.contains(update.getCallbackQuery().getMessage().getChatId())) {
+                        subscribedChatIds.add(update.getCallbackQuery().getMessage().getChatId());
+                    }
                 }
 
                 message.setText("You are now subscribed. You will be notified should there be any alerts.");
                 sendMessage(message);
             } else if (reply.contains("/unsubscribe")) {
-                if (subscribedChatIds.contains(update.getCallbackQuery().getMessage().getChatId())) {
-                    for (int i = 0; i < subscribedChatIds.size(); i++) {
-                        if (subscribedChatIds.get(i) == update.getCallbackQuery().getMessage().getChatId()) {
-                            subscribedChatIds.remove(i);
-                        }
-                        break;
+                synchronized (subscribedChatIds) {
+                    if (subscribedChatIds.contains(update.getCallbackQuery().getMessage().getChatId())) {
+                        subscribedChatIds.remove(update.getCallbackQuery().getMessage().getChatId());
                     }
                 }
 
@@ -136,33 +141,40 @@ public class HubQuartersMgmtBot extends TelegramLongPollingBot {
                             String timestamp = response.get(1);
                             Date lastImageTime = dateFormatter.parse(timestamp);
                             Date currentTime = new Date();
+                            System.out.println(lastImageTime.toString());
+                            System.out.println(currentTime.toString());
                             long difference = (currentTime.getTime() - lastImageTime.getTime()) / 1000;
                             if (difference > 600) {
                                 System.out.println("Alert");
-                                for (long chatId : subscribedChatIds) {
-                                    SendMessage alertMessage = new SendMessage();
-                                    alertMessage.enableMarkdown(true);
-                                    alertMessage.setChatId(chatId);
-                                    alertMessage.setText("*ALERT*");
-                                    sendMessage(alertMessage);
-                                    SendMessage message = new SendMessage();
-                                    message.setChatId(chatId);
-                                    message.setText(String.format("The last update received was at %s. Please check up on the Raspberry Pi.", timestamp));
-                                    sendMessage(message);
+                                synchronized (subscribedChatIds) {
+                                    for (long chatId : subscribedChatIds) {
+                                        SendMessage alertMessage = new SendMessage();
+                                        alertMessage.enableMarkdown(true);
+                                        alertMessage.setChatId(chatId);
+                                        alertMessage.setText("*ALERT*");
+                                        sendMessage(alertMessage);
+                                        SendMessage message = new SendMessage();
+                                        message.setChatId(chatId);
+                                        message.setText(String.format("The last update received was at %s. Please check up on the Raspberry Pi.", timestamp));
+                                        sendMessage(message);
+                                    }
                                 }
                             }
 
                             System.out.println(String.format("Last checked at %s", dateFormatter.format(currentTime)));
                             System.out.println("Difference: " + difference);
                         } else {
-                            for (long chatId : subscribedChatIds) {
-                                SendMessage message = new SendMessage();
-                                message.setChatId(chatId);
-                                message.setText("Something went wrong with the CMS API.");
-                                sendMessage(message);
+                            synchronized (subscribedChatIds) {
+                                for (long chatId : subscribedChatIds) {
+                                    SendMessage message = new SendMessage();
+                                    message.setChatId(chatId);
+                                    message.setText("Something went wrong with the CMS API.");
+                                    sendMessage(message);
+                                }
                             }
                         }
-                        Thread.sleep(600000);
+                        Thread.sleep(1000);
+//                        Thread.sleep(600000);
                     } catch (IOException | URISyntaxException | ParseException | InterruptedException e) {
                         e.printStackTrace();
                     }

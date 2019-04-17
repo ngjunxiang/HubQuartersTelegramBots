@@ -132,6 +132,9 @@ public class HubQuartersCMSBot extends TelegramLongPollingBot {
                                             }
                                             subscribedChatIds = new ArrayList<>();
                                         }
+                                    } else {
+                                        System.out.println("CMS error");
+                                        System.out.println(response.get(0));
                                     }
 
                                     System.out.println(String.format("Last checked at %s", dateFormatter.format(currentTime)));
